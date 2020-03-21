@@ -6,7 +6,7 @@ pipeline {
                 git 'https://github.com/elinarnten/fooproject.git'
             }
         }
-    }
+    
 
 stage('newman') {
             steps {
@@ -18,4 +18,5 @@ stage('newman') {
                     }
                 }
         }
+    }	
 }
