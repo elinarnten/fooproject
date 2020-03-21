@@ -7,8 +7,8 @@ pipeline {
             }
         }
     }
-}
-stage('newman') {
+
+stage('newman') 
             steps {
                 sh 'newman run RestfulBooker.postman_collection.json --RestfulBooker.postman_environment.json --reporters junit'
             }
