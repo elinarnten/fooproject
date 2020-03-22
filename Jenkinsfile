@@ -35,7 +35,7 @@ stage('Build') {
         
     stage('Robot Framework System tests with Selenium') {
               steps {
-                  sh 'robot -d results --variable BROWSER:headlesschrome ./Tests/infotiv.robot'
+                  sh 'robot -d results --variable BROWSER:headlesschrome /Tests/infotiv.robot'
               }
               post {
                   always {
