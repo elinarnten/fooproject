@@ -10,7 +10,7 @@ pipeline {
 
 stage('newman') {
             steps {
-                sh 'newman run RestfulBooker.postman_collection.json --environment RestfulBooker.postman_environment.json --reporters junit'
+                sh 'newman run Restful_Booker_Facit.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
             }
             post {
                 always {
@@ -18,5 +18,30 @@ stage('newman') {
                     }
                 }
         }
-    }	
-}
+        
+    stage('Robot Framework System tests with Selenium') {
+              steps {
+                  sh 'robot --variable BROWSER:headlesschrome -d Results  Tests'
+              }
+              post {
+                  always {
+                      script {
+                            step(
+                                  [
+                                    $class              : 'RobotPublisher',
+                                    outputPath          : 'results',
+                                    outputFileName      : '**/output.xml',
+                                    reportFileName      : '**/report.html',
+                                    logFileName         : '**/log.html',
+                                    disableArchiveOutput: false,
+                                    passThreshold       : 50,
+                                    unstableThreshold   : 40,
+                                    otherFiles          : "**/*.png,**/*.jpg",
+                                  ]
+                            )
+                      }
+                  }
+              }
+          }
+      }    
+  }
