@@ -21,7 +21,7 @@ stage('newman') {
         
     stage('Robot Framework System tests with Selenium') {
               steps {
-                  sh 'robot --variable BROWSER:headlesschrome infotiv.robot'
+                  sh 'robot --variable BROWSER:headlesschrome /Tests/infotiv.robot'
               }
               post {
                   always {
